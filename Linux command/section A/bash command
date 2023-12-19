@@ -1,0 +1,24 @@
+show_help() {
+    echo "Usage: internsctl [options]"
+    echo "Options:"
+    echo "  --help     Show help information"
+    echo "  --version  Show command version"
+    # Add more options and explanations as needed
+}
+
+show_version() {
+    echo "internsctl version $version"
+}
+
+case "$1" in
+    --help)
+        show_help
+        ;;
+    --version)
+        show_version
+        ;;
+    *)
+        echo "Invalid option. Use 'internsctl --help' for usage."
+        exit 1
+        ;;
+esac
