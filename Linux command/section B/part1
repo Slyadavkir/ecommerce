@@ -1,0 +1,59 @@
+version="v0.1.0"
+
+cpu_getinfo() {
+    lscpu
+}
+
+memory_getinfo() {
+    free -h
+}
+
+show_help() {
+    echo "Usage: internsctl [command] [options]"
+    echo "Commands:"
+    echo "  cpu getinfo       Get CPU information"
+    echo "  memory getinfo    Get memory information"
+    echo "Options:"
+    echo "  --help            Show help information"
+    echo "  --version         Show command version"
+    # Add more options and explanations as needed
+}
+
+show_version() {
+    echo "internsctl version $version"
+}
+
+case "$1" in
+    cpu)
+        case "$2" in
+            getinfo)
+                cpu_getinfo
+                ;;
+            *)
+                echo "Invalid cpu option. Use 'internsctl cpu getinfo' for CPU information."
+                exit 1
+                ;;
+        esac
+        ;;
+    memory)
+        case "$2" in
+            getinfo)
+                memory_getinfo
+                ;;
+            *)
+                echo "Invalid memory option. Use 'internsctl memory getinfo' for memory information."
+                exit 1
+                ;;
+        esac
+        ;;
+    --help)
+        show_help
+        ;;
+    --version)
+        show_version
+        ;;
+    *)
+        echo "Invalid option. Use 'internsctl --help' for usage."
+        exit 1
+        ;;
+esac
