@@ -1,0 +1,91 @@
+version="v0.1.0"
+
+get_file_info() {
+    if [ -z "$1" ]; then
+        echo "Please provide a file name."
+        exit 1
+    fi
+
+    file="$1"
+    if [ ! -f "$file" ]; then
+        echo "File '$file' does not exist."
+        exit 1
+    fi
+
+    if [ -z "$2" ]; then
+        echo "Please provide an option or use '--help' for usage."
+        exit 1
+    fi
+
+    case "$2" in
+        --size|-s)
+            stat -c %s "$file"
+            ;;
+        --permissions|-p)
+            stat -c %A "$file"
+            ;;
+        --owner|-o)
+            stat -c %U "$file"
+            ;;
+        --last-modified|-m)
+            stat -c "%y" "$file"
+            ;;
+        --help)
+            echo "Usage: internsctl file getinfo [options] <file-name>"
+            echo "Options:"
+            echo "  --size, -s            Print file size"
+            echo "  --permissions, -p     Print file permissions"
+            echo "  --owner, -o           Print file owner"
+            echo "  --last-modified, -m   Print last modified time"
+            ;;
+        *)
+            echo "Invalid option. Use '--help' for usage."
+            exit 1
+            ;;
+    esac
+}
+
+show_help() {
+    echo "Usage: internsctl [command] [options]"
+    echo "Commands:"
+    echo "  cpu getinfo               Get CPU information"
+    echo "  memory getinfo            Get memory information"
+    echo "  user create <username>    Create a new user"
+    echo "  user list                 List all regular users"
+    echo "  user list --sudo-only     List users with sudo permissions"
+    echo "  file getinfo [options]    Get file information"
+    echo "Options:"
+    echo "  --help                    Show help information"
+    echo "  --version                 Show command version"
+    # Add more options and explanations as needed
+}
+
+show_version() {
+    echo "internsctl version $version"
+}
+
+case "$1" in
+    cpu)
+        # ... (unchanged)
+        ;;
+    memory)
+        # ... (unchanged)
+        ;;
+    user)
+        # ... (unchanged)
+        ;;
+    file)
+        shift
+        get_file_info "$@"
+        ;;
+    --help)
+        show_help
+        ;;
+    --version)
+        show_version
+        ;;
+    *)
+        echo "Invalid option. Use 'internsctl --help' for usage."
+        exit 1
+        ;;
+esac
