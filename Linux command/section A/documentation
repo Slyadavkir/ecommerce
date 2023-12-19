@@ -1,0 +1,34 @@
+.\" Manpage for internsctl
+.TH internsctl 1 "19 Dec 2023" "v0.1.0" "internsctl manual"
+.SH NAME
+internsctl \- custom command for XYZ operations
+
+.SH SYNOPSIS
+.B internsctl
+[\fIOPTION\fR]
+
+.SH DESCRIPTION
+This command performs XYZ operations for managing interns.
+
+.SH OPTIONS
+.TP
+.BR \-\-help
+Show help information and usage guidelines.
+
+.TP
+.BR \-\-version
+Show command version.
+
+.SH AUTHOR
+Written by YourName.
+
+.SH REPORTING BUGS
+Report bugs to: your@email.com
+
+.SH COPYRIGHT
+Copyright \(co 2023 YourCompany.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.SH SEE ALSO
+Online documentation at: https://yourcompany.com/internsctl
